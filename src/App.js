@@ -12,7 +12,7 @@ function App() {
         <input id="marketValue" type="number" name="marketValue" disabled />
 
         <label for="totalValue">Total Value</label>
-        <input id="totalValue" type="number" name="totalValue" disabled />
+        <input id="totalValue" type="number" name="totalValue" value="22342.03" disabled />
         
         <br/><br/><br/><br/>
 
@@ -109,14 +109,14 @@ function App() {
 
         <br/> <br/> <br/> <br/>
 
-        <button>+ Add New Group</button>
+        <button class="button--large">+ Add New Group</button>
 
         <hr/>
 
         <br/> <br/> <br/> <br/>
 
-        <button>Calculate Rebalance</button>
-        <button>Refresh Prices</button>
+        <button class="button--primary">Calculate Rebalance</button>
+        <button class="button--secondary">Refresh Prices</button>
 
       </form>
     </div>
