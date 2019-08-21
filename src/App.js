@@ -1,8 +1,11 @@
-import React from 'react';
+import React from 'react'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Header'
 
 function App() {
   return (
     <div>
+      <Header />
       <form>
         <h2>Portfolio Balances</h2>
         <label for="buyingPower">Buying Power</label>
@@ -119,6 +122,7 @@ function App() {
         <button class="button--secondary">Refresh Prices</button>
 
       </form>
+      <Footer />
     </div>
   );
 }

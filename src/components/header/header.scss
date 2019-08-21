@@ -1,0 +1,13 @@
+.mainHeader {
+    background-color: #FFFFFF;
+    height: 100px;
+}
+
+.mainHeader__decoration {
+    height: 10px;
+    background-color: #36a556;
+    background: -moz-linear-gradient(top, #48b34b 0%, #1f9463 98%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #48b34b 0%,#1f9463 98%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #48b34b 0%,#1f9463 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48b34b', endColorstr='#1f9463',GradientType=0 ); /* IE6-9 */
+}
