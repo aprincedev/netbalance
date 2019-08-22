@@ -1,6 +1,37 @@
 .mainHeader {
+    padding: 20px 0px;
     background-color: #FFFFFF;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainHeader__logo {
+    width: 13em;
+
+   img {
+       width: 100%;
+   }
+}
+
+.mainHeader__navigation {
+    margin-top: 10px;
+    width: 50%;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    li {
+     
+    }
+
+    a {
+        color: #128f66;
+    }
 }
 
 .mainHeader__decoration {
@@ -10,4 +41,15 @@
     background: -webkit-linear-gradient(top, #48b34b 0%,#1f9463 98%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #48b34b 0%,#1f9463 98%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48b34b', endColorstr='#1f9463',GradientType=0 ); /* IE6-9 */
+}
+
+
+/*Tablet and Up*/
+
+@media only screen and (min-width: 768px) {
+    .mainHeader {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px 0px;
+    }
 }

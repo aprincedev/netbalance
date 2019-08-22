@@ -6,6 +6,12 @@ body {
     font-size: 100%;
 }
 
+.container {
+    max-width: 1300px;
+    margin: auto;
+}
+
+
 h2 {
     color: #14936b;
     font-size: 1.8em;

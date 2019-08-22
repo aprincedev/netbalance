@@ -6,6 +6,7 @@ function App() {
   return (
     <div>
       <Header />
+      {/*
       <form>
         <h2>Portfolio Balances</h2>
         <label for="buyingPower">Buying Power</label>
@@ -121,7 +122,7 @@ function App() {
         <button class="button--primary">Calculate Rebalance</button>
         <button class="button--secondary">Refresh Prices</button>
 
-      </form>
+      </form>*/}
       <Footer />
     </div>
   );
