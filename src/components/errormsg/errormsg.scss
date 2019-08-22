@@ -1,0 +1,12 @@
+.errorMsg {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #ED4337;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-size: 1.1em;
+    color: #FFFFFF;
+    line-height: 1.2em;
+}

@@ -1,12 +1,13 @@
 import React from 'react'
-import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
+import ErrorMsg from './components/errormsg/ErrorMsg' /*eventually will be imported in main content component*/
+import Footer from './components/footer/Footer'
 
 function App() {
   return (
     <div>
       <Header />
-      {/*
+      
       <form>
         <h2>Portfolio Balances</h2>
         <label for="buyingPower">Buying Power</label>
@@ -122,7 +123,8 @@ function App() {
         <button class="button--primary">Calculate Rebalance</button>
         <button class="button--secondary">Refresh Prices</button>
 
-      </form>*/}
+      </form>
+      <ErrorMsg type="Error" message="Fund Allocations should total 100% for each group"/>
       <Footer />
     </div>
   );
