@@ -8,14 +8,38 @@ export default class RebalanceForm extends Component {
         totalValue: '',
 
         /*Groups - Array of Objects*/
+        fundGroups: [
+            {
+                id: 1,
+                allocationName: "",
+                allocationPercentage: 30,
+                subTargets: [
+                    {
+                        stockTicker: "VCN",
+                        stockPrice: 33.12,
+                        stockShares: 118,
+                        subTargetPercentage: 100
+                    }
+                ]
+            }
+        ]
     }
 
     formChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value,
+            [e.target.name]: e.target.value,
             totalValue: this.state.buyingPower + this.state.marketValue
         });
     } 
+
+    christ = (e, index) => {
+        let fundGroups = [...this.state.fundGroups];
+        console.log(fundGroups[index].allocationName);
+        //fundGroups[index] = e.target.value;
+        this.setState({ fundGroups });
+    } 
+
+    
     
     render() {
         return (
@@ -30,6 +54,19 @@ export default class RebalanceForm extends Component {
 
             <label htmlFor="totalValue">Total Value</label>
             <input value={this.state.totalValue} id="totalValue" type="number" name="totalValue" placeholder="0.00" disabled />
+        
+            {this.state.fundGroups.map((fundGroup, index) => {
+                return (
+                <div key={fundGroup.id}>
+                    <h2>Group {index + 1}</h2>
+                    <label htmlFor="allocationName">Allocation Name</label>
+                    <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.christ(e, index)} />
+                </div>
+                )
+            })}
+       
+       
+       
         {/*   
             <br/><br/><br/><br/>
 
