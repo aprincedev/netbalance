@@ -60,7 +60,28 @@ export default class RebalanceForm extends Component {
                 fundGroups: [...newFundGroups]
             })
         }
-    
+
+        //Validate Target Percentage
+        validateTargetPercentage = () => {
+            const targetArray = [];
+
+            this.state.fundGroups.map((fundGroup, index) => {
+                let percentage = parseInt(fundGroup.targetPercentage);
+                targetArray.push(percentage);
+            })
+
+            //iterate over array and add numbers
+            let totalSum = 0;
+            for(let i=0; i<targetArray.length; i++){
+                totalSum = totalSum + targetArray[i];
+            }
+            
+            if(totalSum > 100) {
+                console.log("it's over 100");
+            } else {
+                console.log("it's NOT over 100");
+            }
+        }
     
     render() {
         return (
@@ -89,7 +110,7 @@ export default class RebalanceForm extends Component {
                     <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.indexFormChange(e, index)} />
                 
                     <label htmlFor="targetPercentage">Target Percentage</label>
-                    <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onChange={e => this.indexFormChange(e, index)}/>
+                    <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onChange={(e) => { this.indexFormChange(e, index); this.validateTargetPercentage();}}/>
                    
                     <br/><br/>
 
