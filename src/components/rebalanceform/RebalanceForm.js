@@ -13,15 +13,9 @@ export default class RebalanceForm extends Component {
                 id: 1,
                 allocationName: "",
                 targetPercentage: "",
-                subTargets: [
-                    {
-                        id: 1,
-                        stockTicker: "",
-                        stockPrice: "",
-                        shares: "",
-                        subTargetPercentage: 100
-                    }
-                ]
+                stockTicker: "",
+                stockPrice: "",
+                shares: ""
             }
         ]
     }
@@ -39,27 +33,33 @@ export default class RebalanceForm extends Component {
         this.setState({ fundGroups });
     } 
 
-    subTargetChange = (e, index) => {
-        let subTarget = [...this.state.fundGroups[index].subTargets];
-        subTarget[index][e.target.name] = e.target.value;
-        this.setState({subTarget});
-    }
-
-    addSubTarget = (e, index) => {
+    
+    //Add a new Fund Group to the fundGroup array:
+    addGroup = (e) => {
         e.preventDefault();
-        let newSubTarget = {
-            id: 2,
-            stockTicker: "lol",
-            stockPrice: "lol",
-            shares: "lol",
-            subTargetPercentage: 100
+        const newGroup = {
+                id: 2,
+                allocationName: "Test",
+                targetPercentage: "20",
+                stockTicker: "XAW",
+                stockPrice: "22.30",
+                shares: "114"
         }
-
-        this.setState({
-            subTargets: [...this.state.fundGroups[index].subTargets, newSubTarget]
-          })
+        this.setState({ fundGroups: [...this.state.fundGroups, ...[newGroup] ] });
     }
 
+        //Remove a Fund Group from the fundGroup array:
+        removeGroup = (e, fundGroup) => {
+            e.preventDefault();
+
+            const newFundGroups = this.state.fundGroups.filter(group => {
+                return group !== fundGroup;
+            })
+
+            this.setState({
+                fundGroups: [...newFundGroups]
+            })
+        }
     
     
     render() {
@@ -80,35 +80,32 @@ export default class RebalanceForm extends Component {
                 
                 return (
                 <div key={fundGroup.id}>
-                    <h2>Group {index + 1}</h2>
+                    <h2>Group {index + 1}
+                    
+                    {index <= 0 ? <React.Fragment></React.Fragment> : <button onClick={e => this.removeGroup(e, fundGroup)}>- Remove Group</button>}
+                    
+                    </h2>
                     <label htmlFor="allocationName">Allocation Name</label>
                     <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.indexFormChange(e, index)} />
                 
                     <label htmlFor="targetPercentage">Target Percentage</label>
                     <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onChange={e => this.indexFormChange(e, index)}/>
+                   
                     <br/><br/>
-                    {fundGroup.subTargets.map((subTarget, index) => {
-                
-                        return (
-                            <div key={subTarget.id}>
-                                <label htmlFor="stockTicker">Stock Ticker</label>
-                                <input value={subTarget.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={e => this.subTargetChange(e, index)}/>
 
-                                <label htmlFor="stockPrice">Stock Price</label>
-                                <input value={subTarget.stockPrice} id="stockPrice" type="number" name="stockPrice" placeholder="33.04" onChange={e => this.subTargetChange(e, index)}/>
+                    <label htmlFor="stockTicker">Stock Ticker</label>
+                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={e => this.indexFormChange(e, index)}/>
+
+                    <label htmlFor="stockPrice">Stock Price</label>
+                    <input value={fundGroup.stockPrice} id="stockPrice" type="number" name="stockPrice" placeholder="33.04" onChange={e => this.indexFormChange(e, index)}/>
                             
-                                <label htmlFor="shares">Number of Shares</label>
-                                <input value={subTarget.shares} id="shares" type="number" name="shares" placeholder="117" onChange={e => this.subTargetChange(e, index)}/>
-        
-                                <label htmlFor="subTarget">Sub-Target %</label>
-                                <input value={subTarget.subTargetPercentage} id="subTargetPercentage" type="number" name="subTargetPercentage" placeholder="25" disabled/>
-                            </div>
-                        )
-                    })}
-                     <button onClick={e => this.addSubTarget(e, index)}>+ Add Another Fund</button>
-                </div>
+                    <label htmlFor="shares">Number of Shares</label>
+                    <input value={fundGroup.shares} id="shares" type="number" name="shares" placeholder="117" onChange={e => this.indexFormChange(e, index)}/>
+               </div>
                 )
             })}
+
+            <button onClick={e => this.addGroup(e)}>+ Add New Group</button>
        
        
        
