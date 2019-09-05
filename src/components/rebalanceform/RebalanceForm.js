@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uuid from 'uuid';
 
 export default class RebalanceForm extends Component {
     state = {
@@ -10,7 +11,7 @@ export default class RebalanceForm extends Component {
         /*Groups - Array of Objects*/
         fundGroups: [
             {
-                id: 1,
+                id: uuid.v4(),
                 allocationName: "",
                 targetPercentage: "",
                 stockTicker: "",
@@ -38,12 +39,12 @@ export default class RebalanceForm extends Component {
     addGroup = (e) => {
         e.preventDefault();
         const newGroup = {
-                id: 2,
-                allocationName: "Test",
-                targetPercentage: "20",
-                stockTicker: "XAW",
-                stockPrice: "22.30",
-                shares: "114"
+                id: uuid.v4(),
+                allocationName: "",
+                targetPercentage: "",
+                stockTicker: "",
+                stockPrice: "",
+                shares: ""
         }
         this.setState({ fundGroups: [...this.state.fundGroups, ...[newGroup] ] });
     }
@@ -76,10 +77,12 @@ export default class RebalanceForm extends Component {
                 totalSum = totalSum + targetArray[i];
             }
             
-            if(totalSum > 100) {
-                console.log("it's over 100");
+            if(totalSum === 100) {
+                console.log("it's 100");
+                console.log(totalSum);
             } else {
-                console.log("it's NOT over 100");
+                console.log("it's NOT 100");
+                console.log(totalSum);
             }
         }
     
