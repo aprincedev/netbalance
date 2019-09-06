@@ -85,6 +85,25 @@ export default class RebalanceForm extends Component {
                 console.log(totalSum);
             }
         }
+
+        //API Request for Stock Prices
+        getTickerPrice = (e) => {
+        //process.env.REACT_APP_IEX_API_KEY
+        let tickerValue = e.target.value;
+
+        fetch(`https://sandbox.iexapis.com/stable/stock/${tickerValue}/quote?token=Tpk_cfddf549f90d412aa0b1a5c041ec177d`)
+            .then(res => res.json())
+            .then(tickerData => {
+                console.log(tickerData.open);
+            })
+            .catch(err =>
+                console.log('there was an error'))
+            ;
+
+            //handle possible erros
+            //create timeout functionality so function doesn't run right away
+            //update state
+        }
     
     render() {
         return (
@@ -113,12 +132,12 @@ export default class RebalanceForm extends Component {
                     <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.indexFormChange(e, index)} />
                 
                     <label htmlFor="targetPercentage">Target Percentage</label>
-                    <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onChange={(e) => { this.indexFormChange(e, index); this.validateTargetPercentage();}}/>
+                    <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onKeyUp={e => this.getTickerPrice(e, index)} onChange={(e) => { this.indexFormChange(e, index)}}/>
                    
                     <br/><br/>
 
                     <label htmlFor="stockTicker">Stock Ticker</label>
-                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={e => this.indexFormChange(e, index)}/>
+                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e);}}/>
 
                     <label htmlFor="stockPrice">Stock Price</label>
                     <input value={fundGroup.stockPrice} id="stockPrice" type="number" name="stockPrice" placeholder="33.04" onChange={e => this.indexFormChange(e, index)}/>
