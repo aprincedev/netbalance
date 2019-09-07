@@ -87,14 +87,21 @@ export default class RebalanceForm extends Component {
         }
 
         //API Request for Stock Prices
-        getTickerPrice = (e) => {
+        getTickerPrice = (e, index) => {
         //process.env.REACT_APP_IEX_API_KEY
         let tickerValue = e.target.value;
 
         fetch(`https://sandbox.iexapis.com/stable/stock/${tickerValue}/quote?token=Tpk_cfddf549f90d412aa0b1a5c041ec177d`)
             .then(res => res.json())
             .then(tickerData => {
-                console.log(tickerData.open);
+                //console.log(tickerData.open);
+                
+                //const currentFundGroup = Object.assign({}, this.state.fundGroups);
+                //currentFundGroup[index].stockPrice = tickerData.open;
+
+                //console.log(currentFundGroup);
+
+                
             })
             .catch(err =>
                 console.log('there was an error'))
@@ -137,7 +144,7 @@ export default class RebalanceForm extends Component {
                     <br/><br/>
 
                     <label htmlFor="stockTicker">Stock Ticker</label>
-                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e);}}/>
+                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e, index);}}/>
 
                     <label htmlFor="stockPrice">Stock Price</label>
                     <input value={fundGroup.stockPrice} id="stockPrice" type="number" name="stockPrice" placeholder="33.04" onChange={e => this.indexFormChange(e, index)}/>
