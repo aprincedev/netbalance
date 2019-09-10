@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Results from '../results/Results'
 import uuid from 'uuid';
 
 export default class RebalanceForm extends Component {
@@ -18,7 +19,9 @@ export default class RebalanceForm extends Component {
                 stockPrice: "",
                 shares: ""
             }
-        ]
+        ],
+
+        showSteps: true
     }
 
     formChange = (e) => {
@@ -236,8 +239,10 @@ export default class RebalanceForm extends Component {
 
             <button className="button--primary">Calculate Rebalance</button>
             <button className="button--secondary">Refresh Prices</button>
-
         </form>
+
+        { this.state.showSteps ? <Results formData={this.state} /> : null }
+
     </div>
         )
     }
