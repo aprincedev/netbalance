@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import Results from '../results/Results'
+import './rebalanceform.scss'
 import uuid from 'uuid';
+
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default class RebalanceForm extends Component {
     state = {
@@ -114,12 +120,16 @@ export default class RebalanceForm extends Component {
             //create timeout functionality so function doesn't run right away
             //update state
         }
+        
     
     render() {
         return (
-        <div>
+        <main className="container">
             <form>
+            <div className="portfolioBalances">    
             <h2>Portfolio Balances</h2>
+
+            <div className="test">
             <label htmlFor="buyingPower">Buying Power</label>
             <input value={this.state.buyingPower} id="buyingPower" type="number" name="buyingPower" placeholder="0.00" onChange={e => this.formChange(e)}/>
 
@@ -128,23 +138,22 @@ export default class RebalanceForm extends Component {
 
             <label htmlFor="totalValue">Total Value</label>
             <input value={this.state.totalValue} id="totalValue" type="number" name="totalValue" placeholder="0.00" disabled />
-        
+            </div>
+            </div>
+
+
             {this.state.fundGroups.map((fundGroup, index) => {
                 
                 return (
-                <div key={fundGroup.id}>
-                    <h2>Group {index + 1}
+                <div className="test" key={fundGroup.id}>
+                    <h2>Group {index + 1}</h2>   
+                    {index <= 0 ? null : <button className="removeButton" onClick={e => this.removeGroup(e, fundGroup)}><FontAwesomeIcon icon={faMinusCircle} /> Remove Group</button>}
                     
-                    {index <= 0 ? <React.Fragment></React.Fragment> : <button onClick={e => this.removeGroup(e, fundGroup)}>- Remove Group</button>}
-                    
-                    </h2>
                     <label htmlFor="allocationName">Allocation Name</label>
                     <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.indexFormChange(e, index)} />
                 
                     <label htmlFor="targetPercentage">Target Percentage</label>
                     <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onKeyUp={e => this.getTickerPrice(e, index)} onChange={(e) => { this.indexFormChange(e, index)}}/>
-                   
-                    <br/><br/>
 
                     <label htmlFor="stockTicker">Stock Ticker</label>
                     <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e, index);}}/>
@@ -158,7 +167,7 @@ export default class RebalanceForm extends Component {
                 )
             })}
 
-            <button onClick={e => this.addGroup(e)}>+ Add New Group</button>
+            <button className="addButton" onClick={e => this.addGroup(e)}><FontAwesomeIcon icon={faPlusCircle} />Add New Group</button>
        
        
        
@@ -171,7 +180,6 @@ export default class RebalanceForm extends Component {
             <label htmlFor="targetPercentage2">Target Percentage</label>
             <input id="targetPercentage2" type="number" name="targetPercentage2" placeholder="30"/>
             
-            <br/><br/><br/><br/>
             <hr/>
             
             <label htmlFor="stockTicker2">Stock Ticker</label>
@@ -186,7 +194,6 @@ export default class RebalanceForm extends Component {
             <label htmlFor="subTarget2">Sub-Target %</label>
             <input id="subTarget2" type="number" name="subTarget2" placeholder="25"/>
 
-            <br/><br/><br/>
 
             <label htmlFor="stockTicker2">Stock Ticker</label>
             <input id="stockTicker4" type="text" name="stockTicker4" placeholder="VCN"/>
@@ -203,7 +210,7 @@ export default class RebalanceForm extends Component {
 
             <button>+ Add Another Group 2 Fund</button>
 
-            <br/><br/><br/><br/>
+
 
             <h2>Group 3</h2> <button>- Remove Group</button>
             <label htmlFor="allocationName3">Allocation Name</label>
@@ -212,7 +219,6 @@ export default class RebalanceForm extends Component {
             <label htmlFor="targetPercentage3">Target Percentage</label>
             <input id="targetPercentage3" type="number" name="targetPercentage3" placeholder="30"/>
             
-            <br/><br/><br/><br/>
             <hr/>
             
             <label htmlFor="stockTicker3">Stock Ticker</label>
@@ -229,13 +235,11 @@ export default class RebalanceForm extends Component {
 
             <button>+ Add Another Group 3 Fund</button>
 
-            <br/> <br/> <br/> <br/>
-
             <button className="button--large">+ Add New Group</button>
 
             <hr/>
 
-        */}<br/> <br/> <br/> <br/>
+        */}
 
             <button className="button--primary">Calculate Rebalance</button>
             <button className="button--secondary">Refresh Prices</button>
@@ -243,7 +247,7 @@ export default class RebalanceForm extends Component {
 
         { this.state.showSteps ? <Results formData={this.state} /> : null }
 
-    </div>
+    </main>
         )
     }
 }

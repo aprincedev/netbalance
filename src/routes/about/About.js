@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function About() {
     return (
-        <section className="about">
+        <section className="about container">
             <div>
                 <h2>What Is This?</h2>
                 <p>Over time, even a passively managed portfolio will deviate from its intended target allocation due to the constant fluctuation of the market. Rebalancing is the process of realigning the weightings of a portfolio of assets. Rebalancing involves periodically buying or selling assets in a portfolio to maintain an original or desired level of asset allocation or risk. </p>

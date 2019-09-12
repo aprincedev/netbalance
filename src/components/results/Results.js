@@ -1,3 +1,5 @@
+/*NEXT STEPS - START STYLING EVERYTHING. EACH COMPONENT, THEN MAIN.CSS*/
+
 import React, { Component } from 'react'
 
 export default class Results extends Component {
@@ -9,13 +11,13 @@ export default class Results extends Component {
                 <form className="displayOptions">
                     <label>Display Options</label><br/>
                     <input type="checkbox" name="wholeUnits" id="wholeUnits" value="wholeUnits" />
-                    <label for="wholeUnits">Whole Units</label><br/>
+                    <label htmlFor="wholeUnits">Whole Units</label><br/>
 
                     <input type="checkbox" name="partialUnits" id="partialUnits" value="partialUnits" />
-                    <label for="partialUnits">Partial Units</label><br/>
+                    <label htmlFor="partialUnits">Partial Units</label><br/>
 
                     <input type="checkbox" name="cashAmounts" id="cashAmounts" value="cashAmounts" />
-                    <label for="cashAmounts">Cash Amounts</label><br/>
+                    <label htmlFor="cashAmounts">Cash Amounts</label><br/>
                 </form>
 
             <section>
