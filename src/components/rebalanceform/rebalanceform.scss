@@ -4,7 +4,7 @@
     border-bottom: solid 2px #14936b;
 }
 
-/*Add group class and put correct margin top and bottom for each group. right now they're too close together*/
+
 
 label {
     text-align: center;
@@ -14,6 +14,14 @@ label {
 .test {
     display: flex;
     flex-direction: column;
+}
+
+.fundGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: solid 2px #14936b;
 }
 
 

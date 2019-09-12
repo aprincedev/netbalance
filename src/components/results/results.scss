@@ -1,0 +1,71 @@
+.results {
+    margin-top: 40px;
+    border-top: solid 2px #c9c9c9;
+}
+
+.disclaimer {
+    margin-top: 80px;
+    margin-bottom: 40px;
+
+    h2 {
+        color: #575757;
+        font-size: 1.2em;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    p {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        font-size: .9em;
+        line-height: 1.4em;
+        color: #575757;
+    }
+}
+
+.fundResult {
+    
+    border-bottom: solid 2px #c9c9c9;
+
+    h2 {
+        margin-bottom: 0px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    h3 {
+        margin-bottom: 0px;
+    }
+}
+
+
+.displayOptions {
+    h3 {
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        margin-bottom: 15px;
+    }
+
+    svg {
+        opacity: .8;
+        margin-right: 5px;
+    }
+}
+
+.moneyLoss {
+    color: #e92727;
+}
+
+.moneyGain {
+    color: #14936b;
+}

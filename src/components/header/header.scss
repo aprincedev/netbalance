@@ -30,7 +30,11 @@
     }
 
     a {
-        color: #128f66;
+        color: #036501;
+    }
+
+    a:hover {
+        color: lighten(#036501, 10%);
     }
 }
 

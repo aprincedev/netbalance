@@ -1,15 +1,18 @@
-/*NEXT STEPS - START STYLING EVERYTHING. EACH COMPONENT, THEN MAIN.CSS*/
-
 import React, { Component } from 'react'
+import './results.scss'
+
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons'
 
 export default class Results extends Component {
     render(props) {
         return (
-            <div className="results">
+            <section className="results">
                 <h2>Rebalancing Steps</h2>
 
                 <form className="displayOptions">
-                    <label>Display Options</label><br/>
+                    <h3><FontAwesomeIcon icon={faPaintBrush} /> Display Options</h3>
                     <input type="checkbox" name="wholeUnits" id="wholeUnits" value="wholeUnits" />
                     <label htmlFor="wholeUnits">Whole Units</label><br/>
 
@@ -21,7 +24,7 @@ export default class Results extends Component {
                 </form>
 
             <section>
-                <div>
+                <div class="fundResult">
                     <h2>VCN</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -35,7 +38,7 @@ export default class Results extends Component {
                     </ul>
                 </div>
 
-                <div>
+                <div class="fundResult">
                     <h2>XAW</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -50,7 +53,7 @@ export default class Results extends Component {
                 </div>
 
 
-                <div>
+                <div class="fundResult">
                     <h2>ZAG</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -74,7 +77,7 @@ export default class Results extends Component {
                     investing in any index fund or ETF mentioned on this site.</p>
             </section>
 
-            </div>
+            </section>
         )
     }
 }

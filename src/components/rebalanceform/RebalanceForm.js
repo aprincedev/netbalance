@@ -145,7 +145,7 @@ export default class RebalanceForm extends Component {
             {this.state.fundGroups.map((fundGroup, index) => {
                 
                 return (
-                <div className="test" key={fundGroup.id}>
+                <div className="fundGroup" key={fundGroup.id}>
                     <h2>Group {index + 1}</h2>   
                     {index <= 0 ? null : <button className="removeButton" onClick={e => this.removeGroup(e, fundGroup)}><FontAwesomeIcon icon={faMinusCircle} /> Remove Group</button>}
                     
