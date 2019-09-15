@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
 import './results.scss'
 
-//FontAwesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaintBrush } from '@fortawesome/free-solid-svg-icons'
-
 export default class Results extends Component {
     render(props) {
         return (
             <section className="results">
                 <h2>Rebalancing Steps</h2>
-
                 <form className="displayOptions">
-                    <h3><FontAwesomeIcon icon={faPaintBrush} /> Display Options</h3>
+                    <h3>Display Options</h3>
                     <input type="checkbox" name="wholeUnits" id="wholeUnits" value="wholeUnits" />
                     <label htmlFor="wholeUnits">Whole Units</label><br/>
 
@@ -23,8 +18,37 @@ export default class Results extends Component {
                     <label htmlFor="cashAmounts">Cash Amounts</label><br/>
                 </form>
 
+
+            {this.props.formData.fundGroups.map((fundGroup, index) => {
+                
+                return (    
+                    <div className="fundResult" key={fundGroup.id}>
+                    <h2>{fundGroup.stockTicker}</h2>
+                    <ul>
+                        <li><b>Current portfolio percentage:</b>  {parseFloat(fundGroup.stockPrice) * parseFloat(fundGroup.shares)}</li>
+                        <li><b>Current Market Value:</b> <span className="moneyGain">${(parseFloat(fundGroup.stockPrice) * parseFloat(fundGroup.shares))+parseFloat(this.props.formData.totalValue)}</span></li>
+                    </ul>
+
+                    <h3>Action:</h3>
+                    <ul>
+                        <li><b><span className="moneyLoss">Buy 22</span></b> units: <span className="moneyLoss">(-$356.00)</span></li>
+                        <li><b><span className="moneyLoss">Buy 22.45</span></b> partial units: <span className="moneyLoss">(-$356.34)</span></li>
+                    </ul>
+                </div>
+                )
+            })}
+
+
+
+
+
+
+
+
+
+{/*
             <section>
-                <div class="fundResult">
+                <div className="fundResult">
                     <h2>VCN</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -38,7 +62,7 @@ export default class Results extends Component {
                     </ul>
                 </div>
 
-                <div class="fundResult">
+                <div className="fundResult">
                     <h2>XAW</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -53,7 +77,7 @@ export default class Results extends Component {
                 </div>
 
 
-                <div class="fundResult">
+                <div className="fundResult">
                     <h2>ZAG</h2>
                     <ul>
                         <li><b>Current portfolio percentage:</b>  26.33%</li>
@@ -66,7 +90,7 @@ export default class Results extends Component {
                         <li><b><span className="moneyLoss">Buy 22.45</span></b> partial units: <span className="moneyLoss">(-$356.34)</span></li>
                     </ul>
                 </div>
-            </section>
+            </section>*/}
 
             <section className="disclaimer">
                 <h2>Disclaimer</h2>
@@ -76,8 +100,31 @@ export default class Results extends Component {
                     securities. All investments carry the risk of loss. It is the responsibility of individuals to do their own due diligence before 
                     investing in any index fund or ETF mentioned on this site.</p>
             </section>
-
-            </section>
+        </section>
         )
     }
 }
+
+
+
+
+/* Calculations for results
+
+First need to calculate the current allocation
+do this by dividing X group's total value by the entire total value of stocks
+
+if money to invest is not 0 {
+($D$27+$D$5)*C10-D10;
+} else {
+null / = 0
+}
+
+
+$D$27 = 22,666 (total value of stocks)
+$D$5 = 1,360 (how much to invest)
+C10 = 10% (target allocation of stock)
+D10 = 2162 (price of stock, stock price x num of shares)
+
+(22666+1360)x.10-2162
+
+*/

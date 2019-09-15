@@ -76,7 +76,7 @@ export default class RebalanceForm extends Component {
             const targetArray = [];
 
             this.state.fundGroups.map((fundGroup, index) => {
-                let percentage = parseInt(fundGroup.targetPercentage);
+                let percentage = parseFloat(fundGroup.targetPercentage);
                 targetArray.push(percentage);
             })
 
@@ -100,7 +100,7 @@ export default class RebalanceForm extends Component {
         //process.env.REACT_APP_IEX_API_KEY
         let tickerValue = e.target.value;
 
-        fetch(`https://sandbox.iexapis.com/stable/stock/${tickerValue}/quote?token=Tpk_cfddf549f90d412aa0b1a5c041ec177d`)
+        fetch(`ht3tps://sa234234ndbox.iexapis.com/stable/stock/${tickerValue}/quote?token=Tpk_cfddf549f90d412aa0b1a5c041ec177d`)
             .then(res => res.json())
             .then(tickerData => {
                 //console.log(tickerData.open);
@@ -167,11 +167,20 @@ export default class RebalanceForm extends Component {
                 )
             })}
 
-            <button className="addButton" onClick={e => this.addGroup(e)}><FontAwesomeIcon icon={faPlusCircle} />Add New Group</button>
-       
-       
-       
-        {/*   
+            <button className="addButton" onClick={e => this.addGroup(e)}><FontAwesomeIcon icon={faPlusCircle} />Add New Group</button>      
+            
+            <button className="button--primary">Calculate Rebalance</button>
+            <button className="button--secondary">Refresh Prices</button>
+        </form>
+
+        { this.state.showSteps ? <Results formData={this.state} /> : null }
+
+    </main>
+        )
+    }   
+}
+
+/*   
 
             <h2>Group 2</h2> <button>- Remove Group</button>
             <label htmlFor="allocationName2">Allocation Name</label>
@@ -239,15 +248,5 @@ export default class RebalanceForm extends Component {
 
             <hr/>
 
-        */}
+        */
 
-            <button className="button--primary">Calculate Rebalance</button>
-            <button className="button--secondary">Refresh Prices</button>
-        </form>
-
-        { this.state.showSteps ? <Results formData={this.state} /> : null }
-
-    </main>
-        )
-    }
-}
