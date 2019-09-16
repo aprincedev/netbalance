@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import './results.scss'
 
 export default class Results extends Component {
+
+    state = {
+        wholeUnits: true,
+        partialUnits: true,
+        cashAmounts: true
+    }
+
     render(props) {
         return (
             <section className="results">
@@ -29,10 +36,10 @@ export default class Results extends Component {
                         <li><b>Current Market Value:</b> <span className="moneyGain">${(parseFloat(fundGroup.stockPrice) * parseFloat(fundGroup.shares))+parseFloat(this.props.formData.totalValue)}</span></li>
                     </ul>
 
-                    <h3>Action:</h3>
+                    { this.state.wholeUnits || this.state.partialUnits ? <h3>Action:</h3> : null }
                     <ul>
-                        <li><b><span className="moneyLoss">Buy 22</span></b> units: <span className="moneyLoss">(-$356.00)</span></li>
-                        <li><b><span className="moneyLoss">Buy 22.45</span></b> partial units: <span className="moneyLoss">(-$356.34)</span></li>
+                        { this.state.wholeUnits ? <li><b><span className="moneyLoss">Buy 22</span></b> units { this.state.cashAmounts ? <span className="moneyLoss">(-$356.00)</span> : null }</li> : null }
+                        { this.state.partialUnits ? <li><b><span className="moneyLoss">Buy 22.45</span></b> partial units { this.state.cashAmounts ? <span className="moneyLoss">(-$356.34)</span> : null }</li> : null }
                     </ul>
                 </div>
                 )

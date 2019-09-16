@@ -120,6 +120,11 @@ export default class RebalanceForm extends Component {
             //create timeout functionality so function doesn't run right away
             //update state
         }
+
+
+        //Validator On Submit
+        //function that checks the state and if any are blank, run function
+        //this other function takes in paramater for what the input is that is blank
         
     
     render() {
@@ -179,6 +184,29 @@ export default class RebalanceForm extends Component {
         )
     }   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*   
 
