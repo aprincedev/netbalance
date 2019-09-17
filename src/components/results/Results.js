@@ -5,9 +5,20 @@ export default class Results extends Component {
 
     state = {
         wholeUnits: true,
-        partialUnits: true,
+        partialUnits: false,
         cashAmounts: true
     }
+
+    //Functions
+
+    //Handle Checkbox
+    
+    checkboxChange = (e) => {
+        console.log(e.target.name);
+        this.setState({
+            [e.target.name]: !this.state[e.target.name],
+        });
+    } 
 
     render(props) {
         return (
@@ -15,13 +26,13 @@ export default class Results extends Component {
                 <h2>Rebalancing Steps</h2>
                 <form className="displayOptions">
                     <h3>Display Options</h3>
-                    <input type="checkbox" name="wholeUnits" id="wholeUnits" value="wholeUnits" />
+                    <input type="checkbox" defaultChecked name="wholeUnits" id="wholeUnits" value="wholeUnits" onClick={e => this.checkboxChange(e)} />
                     <label htmlFor="wholeUnits">Whole Units</label><br/>
 
-                    <input type="checkbox" name="partialUnits" id="partialUnits" value="partialUnits" />
+                    <input type="checkbox" name="partialUnits" id="partialUnits" value="partialUnits" onClick={e => this.checkboxChange(e)} />
                     <label htmlFor="partialUnits">Partial Units</label><br/>
 
-                    <input type="checkbox" name="cashAmounts" id="cashAmounts" value="cashAmounts" />
+                    <input type="checkbox" defaultChecked name="cashAmounts" id="cashAmounts" value="cashAmounts" onClick={e => this.checkboxChange(e)} />
                     <label htmlFor="cashAmounts">Cash Amounts</label><br/>
                 </form>
 
