@@ -6,7 +6,7 @@ export default class Results extends Component {
     state = {
         wholeUnits: true,
         partialUnits: false,
-        cashAmounts: true
+        cashAmounts: false
     }
 
     //Functions
@@ -32,7 +32,7 @@ export default class Results extends Component {
                     <input type="checkbox" name="partialUnits" id="partialUnits" value="partialUnits" onClick={e => this.checkboxChange(e)} />
                     <label htmlFor="partialUnits">Partial Units</label><br/>
 
-                    <input type="checkbox" defaultChecked name="cashAmounts" id="cashAmounts" value="cashAmounts" onClick={e => this.checkboxChange(e)} />
+                    <input type="checkbox" name="cashAmounts" id="cashAmounts" value="cashAmounts" onClick={e => this.checkboxChange(e)} />
                     <label htmlFor="cashAmounts">Cash Amounts</label><br/>
                 </form>
 
@@ -42,6 +42,21 @@ export default class Results extends Component {
                 return (    
                     <div className="fundResult" key={fundGroup.id}>
                     <h2>{fundGroup.stockTicker}</h2>
+                    {console.log(this.props.formData.fundGroups[0])}
+
+                    <ul>
+                        <li>Buying Power: {this.props.formData.buyingPower}</li>
+                        <li>Market Value: {this.props.formData.marketValue}</li>
+                        <li>Total Value: {this.props.formData.totalValue}</li>
+                        <li>Allocation Name: {fundGroup.allocationName}</li>
+                        <li>Target Percentage: {fundGroup.targetPercentage}</li>
+                        <li>Stock Ticker: {fundGroup.stockTicker}</li>
+                        <li>Stock Price: {fundGroup.stockPrice}</li>
+                        <li>Target Percentage: {fundGroup.targetPercentage}</li>
+                        
+                    </ul>
+
+
                     <ul>
                         <li><b>Current portfolio percentage:</b>  {parseFloat(fundGroup.stockPrice) * parseFloat(fundGroup.shares)}</li>
                         <li><b>Current Market Value:</b> <span className="moneyGain">${(parseFloat(fundGroup.stockPrice) * parseFloat(fundGroup.shares))+parseFloat(this.props.formData.totalValue)}</span></li>
