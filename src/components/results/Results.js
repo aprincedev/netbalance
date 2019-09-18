@@ -52,8 +52,10 @@ export default class Results extends Component {
                         <li>Target Percentage: {fundGroup.targetPercentage}</li>
                         <li>Stock Ticker: {fundGroup.stockTicker}</li>
                         <li>Stock Price: {fundGroup.stockPrice}</li>
-                        <li>Target Percentage: {fundGroup.targetPercentage}</li>
-                        
+                        <li>Shares: {fundGroup.shares}</li>
+                        <br/><br/><br/><br/><br/><br/>
+                        <li>Market value of this stock: {(fundGroup.shares*fundGroup.stockPrice).toFixed(2)}</li>
+                        <br/><br/><br/><br/><br/><br/>
                     </ul>
 
 

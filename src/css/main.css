@@ -26,6 +26,10 @@ ul {
     margin: 0;
 }
 
+input:disabled {
+    cursor: not-allowed;
+  }
+
 
 .container {
     max-width: 1300px;

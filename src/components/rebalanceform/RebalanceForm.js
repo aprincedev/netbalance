@@ -11,7 +11,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 export default class RebalanceForm extends Component {
     state = {
         /*Portfolio Balances - One Occurance*/
-        buyingPower: '',
+        buyingPower: 1360,
         marketValue: '',
         totalValue: '',
 
@@ -19,21 +19,41 @@ export default class RebalanceForm extends Component {
         fundGroups: [
             {
                 id: uuid.v4(),
-                allocationName: "",
-                targetPercentage: "",
-                stockTicker: "",
-                stockPrice: "",
-                shares: ""
+                allocationName: "Canadian Bonds",
+                targetPercentage: 10,
+                stockTicker: "ZAG",
+                stockPrice: 16.04,
+                shares: 134,
+                stockMarketValue: ""
+            },
+            {
+                id: uuid.v4(),
+                allocationName: "Canadian Stocks",
+                targetPercentage: 30,
+                stockTicker: "VCN",
+                stockPrice: 34.05,
+                shares: 198,
+                stockMarketValue: ""
+            },
+            {
+                id: uuid.v4(),
+                allocationName: "World Stocks",
+                targetPercentage: 60,
+                stockTicker: "XAW",
+                stockPrice: 26.72,
+                shares: 514,
+                stockMarketValue: ""
             }
         ],
 
-        showSteps: true
+        showSteps: false
     }
 
     //Functions
 
     //Form Asynchronous Change Function
     formChange = (e) => {
+        this.setState({ showSteps: false });
         this.setState({
             [e.target.name]: e.target.value,
             totalValue: this.state.buyingPower + this.state.marketValue
@@ -41,6 +61,8 @@ export default class RebalanceForm extends Component {
     } 
 
     indexFormChange = (e, index) => {
+        this.setState({ showSteps: false });
+
         let fundGroups = [...this.state.fundGroups];
         fundGroups[index][e.target.name] = e.target.value;
         this.setState({ fundGroups });
@@ -124,13 +146,16 @@ export default class RebalanceForm extends Component {
             //update state
         }
 
+        calculateRebalance = (e) => {
+            e.preventDefault();
+            this.setState({ showSteps: true });
+        }
+
 
         //Validator On Submit
         //function that checks the state and if any are blank, run function
         //this other function takes in paramater for what the input is that is blank
-
-        //LOST FUNCTIONS onChange={e => this.formChange(e)} /(when mapped)  onChange={e => this.indexFormChange(e, index)}   /  onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e, index);}}
-        //value={this.state.buyingPower}  / (when mapped) value={fundGroup.shares}
+        
     
     render() {
         return (
@@ -141,13 +166,13 @@ export default class RebalanceForm extends Component {
 
             <div className="test">
             <label htmlFor="buyingPower">Buying Power</label>
-            <input id="buyingPower" type="number" name="buyingPower" placeholder="0.00"/>
+            <input value={this.state.buyingPower} id="buyingPower" type="number" name="buyingPower" placeholder="0.00" onChange={e => this.formChange(e)}/>
 
             <label htmlFor="marketValue">Market Value</label>
-            <input id="marketValue" type="number" name="marketValue" placeholder="0.00" disabled/>
+            <input value={this.state.marketValue} id="marketValue" type="number" name="marketValue" placeholder="0.00" disabled onChange={e => this.formChange(e)} />
 
             <label htmlFor="totalValue">Total Value</label>
-            <input id="totalValue" type="number" name="totalValue" placeholder="0.00" disabled/>
+            <input value={this.state.totalValue} id="totalValue" type="number" name="totalValue" placeholder="0.00" disabled />
             </div>
             </div>
 
@@ -160,26 +185,26 @@ export default class RebalanceForm extends Component {
                     {index <= 0 ? null : <button className="removeButton" onClick={e => this.removeGroup(e, fundGroup)}><FontAwesomeIcon icon={faMinusCircle} /> Remove Group</button>}
                     
                     <label htmlFor="allocationName">Allocation Name</label>
-                    <input id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks"/>
+                    <input value={fundGroup.allocationName} id="allocationName" type="text" name="allocationName" placeholder="Canadian Stocks" onChange={e => this.indexFormChange(e, index)} />
                 
                     <label htmlFor="targetPercentage">Target Percentage</label>
-                    <input id="targetPercentage" type="number" name="targetPercentage" placeholder="30"/>
+                    <input value={fundGroup.targetPercentage} id="targetPercentage" type="number" name="targetPercentage" placeholder="30" onKeyUp={e => this.getTickerPrice(e, index)} onChange={(e) => { this.indexFormChange(e, index)}}/>
 
                     <label htmlFor="stockTicker">Stock Ticker</label>
-                    <input id="stockTicker" type="text" name="stockTicker" placeholder="VCN"/>
+                    <input value={fundGroup.stockTicker} id="stockTicker" type="text" name="stockTicker" placeholder="VCN" onChange={(e) => { this.indexFormChange(e, index); this.getTickerPrice(e, index);}}/>
 
                     <label htmlFor="stockPrice">Stock Price</label>
-                    <input id="stockPrice" type="number" name="stockPrice" placeholder="33.04"/>
+                    <input value={fundGroup.stockPrice} id="stockPrice" type="number" name="stockPrice" placeholder="33.04" onChange={e => this.indexFormChange(e, index)}/>
                             
                     <label htmlFor="shares">Number of Shares</label>
-                    <input id="shares" type="number" name="shares" placeholder="117"/>
+                    <input value={fundGroup.shares} id="shares" type="number" name="shares" placeholder="117" onChange={e => this.indexFormChange(e, index)}/>
                </div>
                 )
             })}
 
             <button className="addButton" onClick={e => this.addGroup(e)}><FontAwesomeIcon icon={faPlusCircle} />Add New Group</button>      
             
-            <button className="button--primary">Calculate Rebalance</button>
+            <button className="button--primary" onClick={e => this.calculateRebalance(e)}>Calculate Rebalance</button>
             <button className="button--secondary">Refresh Prices</button>
         </form>
 
